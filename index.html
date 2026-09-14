@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calantha Mohanraj — Data Science & Statistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory: #F8F4EE;
+  --burgundy: #7D2035;
+  --burgundy-hover: #9B2A42;
+  --camel: #C4A870;
+  --camel-light: rgba(196,168,112,0.18);
+  --dark: #2C1810;
+  --muted: #6B5248;
+  --border-camel: rgba(196,168,112,0.3);
+  --border-burg: rgba(125,32,53,0.15);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ivory);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: var(--burgundy);
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3.5rem;
+  z-index: 999;
+}
+nav .brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1.05rem;
+  color: var(--ivory);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2.2rem;
+}
+nav ul a {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(248,244,238,0.78);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--camel); }
+
+/* ── HERO ── */
+.hero {
+  padding: 8rem 3.5rem 5rem;
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 4rem;
+  align-items: start;
+  min-height: 92vh;
+}
+.hero-left h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 4.8rem;
+  color: var(--burgundy);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+}
+.hero-subtitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--camel);
+  margin-bottom: 1.8rem;
+}
+.hero-desc {
+  font-size: 0.96rem;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.85;
+  margin-bottom: 2.2rem;
+}
+.metric { font-weight: 600; color: var(--burgundy); }
+.hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+.btn {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.3rem;
+  border: 1px solid var(--burgundy);
+  color: var(--burgundy);
+  text-decoration: none;
+  background: transparent;
+  transition: all 0.22s ease;
+  cursor: pointer;
+}
+.btn:hover { background: var(--burgundy); color: var(--ivory); }
+.btn-fill { background: var(--burgundy); color: var(--ivory); }
+.btn-fill:hover { background: var(--burgundy-hover); }
+
+.photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.5rem;
+  gap: 1rem;
+}
+.photo-circle {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 2px solid var(--camel);
+  background: rgba(196,168,112,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.photo-circle img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.photo-placeholder {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  color: var(--camel);
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 1rem;
+}
+.hero-location {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+/* ── SECTION SHELL ── */
+.section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3.5rem 3.5rem;
+}
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--border-camel);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  margin-bottom: 2.4rem;
+}
+.section-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 2.6rem;
+  color: var(--burgundy);
+  white-space: nowrap;
+}
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--camel);
+  opacity: 0.4;
+}
+
+/* ── CARDS ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+.card {
+  background: #fff;
+  border: 1px solid var(--border-camel);
+  padding: 1.5rem;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-bottom 0.2s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 28px rgba(125,32,53,0.07);
+  border-bottom: 3px solid var(--camel);
+}
+.card-emoji {
+  font-size: 2rem;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ivory);
+  border: 1px solid var(--border-camel);
+  margin-bottom: 1rem;
+}
+.card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.18rem;
+  color: var(--burgundy);
+  margin-bottom: 0.45rem;
+  line-height: 1.3;
+}
+.card p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.9rem; }
+.tag {
+  font-size: 0.63rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  background: var(--burgundy);
+  color: var(--ivory);
+}
+.tag-outline {
+  background: transparent;
+  border: 1px solid var(--camel);
+  color: var(--camel);
+}
+.card-link {
+  font-size: 0.74rem;
+  color: var(--camel);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.card-link:hover { color: var(--burgundy); }
+
+/* BADGE */
+.badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+}
+.badge-wip { background: var(--camel); color: var(--ivory); }
+.badge-live { background: var(--burgundy); color: var(--ivory); }
+
+/* FUN CARD */
+.card-fun {
+  background: linear-gradient(145deg, #FFFAF4, #fff);
+  border: 1.5px dashed var(--camel);
+}
+.card-fun:hover { border: 1.5px dashed var(--burgundy); border-bottom: 3px solid var(--camel); }
+
+/* ── RESEARCH ── */
+.research-intro {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 750px;
+  line-height: 1.88;
+  margin-bottom: 2.5rem;
+}
+.research-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+
+.tech-pill {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  background: rgba(196,168,112,0.15);
+  border: 1px solid var(--border-camel);
+  color: var(--muted);
+  margin: 0.15rem 0.15rem 0 0;
+}
+
+/* ── HONORS ── */
+.honors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+.honor {
+  background: #fff;
+  border-left: 3px solid var(--camel);
+  padding: 1.2rem 1.4rem;
+}
+.honor h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 1.08rem;
+  color: var(--burgundy);
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+}
+.honor p { font-size: 0.81rem; color: var(--muted); line-height: 1.65; }
+.honor-date {
+  font-size: 0.68rem;
+  color: var(--camel);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 0.45rem;
+}
+
+
+/* ── SKILLS ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.skill-cat h4 {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--camel);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+.pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.pill {
+  font-size: 0.78rem;
+  padding: 0.28rem 0.8rem;
+  border: 1px solid var(--border-burg);
+  color: var(--dark);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--burgundy);
+  padding: 2.8rem 3.5rem;
+  text-align: center;
+  margin-top: 4rem;
+}
+footer p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: rgba(248,244,238,0.65);
+  letter-spacing: 0.05em;
+}
+footer a { color: var(--camel); text-decoration: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .cards, .research-cards { grid-template-columns: repeat(2, 1fr); }
+  .honors-grid, .interests-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; }
+  .photo-wrap { display: none; }
+  .hero-left h1 { font-size: 3.2rem; }
+}
+@media (max-width: 600px) {
+  .cards, .research-cards { grid-template-columns: 1fr; }
+  .section { padding: 2.5rem 1.5rem; }
+  nav { padding: 0 1.2rem; }
+  nav ul { gap: 1.2rem; }
+  .hero { padding: 6rem 1.5rem 3rem; }
+  .hero-left h1 { font-size: 2.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="brand">Calantha Mohanraj</a>
+  <ul>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#honors">Honors</a></li>
+    <li><a href="https://github.com/calantha168" target="_blank">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/calanthamohanraj" target="_blank">LinkedIn</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero">
+    <div class="hero-left">
+      <h1>Calantha<br>Mohanraj</h1>
+      <p class="hero-subtitle">Data Science &amp; Statistics &nbsp;·&nbsp; UT Dallas &nbsp;·&nbsp; Graduating December 2026</p>
+      <p class="hero-desc">
+        Data Science &amp; Statistics student at UT Dallas with production experience in SQL ETL pipelines, Python analytics, A/B testing at scale, and end-to-end ML engineering. I've processed <span class="metric">300+ raw files</span> into structured relational databases, designed controlled experiments across <span class="metric">50,000+ user sessions</span>, and built credit risk ML pipelines with ROC-AUC validation on tabular data. I work across the full stack — SQL, Python, and BI — turning messy data into systems that actually ship.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-fill">Projects</a>
+        <a href="#research" class="btn">Research</a>
+        <a href="https://github.com/calantha168" class="btn" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/calanthamohanraj" class="btn" target="_blank">LinkedIn</a>
+        <a href="mailto:databycalan@gmail.com" class="btn">Contact</a>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <!-- TO ADD YOUR PHOTO: upload a file named photo.jpg to your GitHub repo -->
+      <div class="photo-circle" id="photo-wrap">
+        <img src="photo.jpg" alt="Calantha Mohanraj" id="hero-photo"
+          style="width:100%;height:100%;object-fit:cover;border-radius:50%;"
+          onerror="document.getElementById('hero-photo').style.display='none';document.getElementById('photo-fallback').style.display='flex';">
+        <div id="photo-fallback" style="display:none;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;font-family:'Cormorant Garamond',serif;font-size:0.72rem;color:var(--camel);letter-spacing:0.08em;text-align:center;padding:1rem;">
+          Upload<br>photo.jpg<br>to repo
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="cards">
+
+      <!-- Credit Risk ML -->
+      <div class="card">
+        <div class="badge badge-live">2026</div>
+        <div class="card-emoji">🏦</div>
+        <h3>One-Command Credit Risk ML Pipeline</h3>
+        <p>
+          Production-style ML pipeline on tabular credit data with end-to-end preprocessing, training, and batch scoring. Evaluated with <span class="metric">ROC-AUC, Accuracy &amp; F1</span>. Modular architecture separates training, evaluation, and prediction — built to ship, not just run.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">SQL</span>
+          <span class="tag">ML</span>
+          <span class="tag tag-outline">Logistic Regression</span>
+        </div>
+        <a class="card-link" href="https://github.com/calantha168" target="_blank">→ GitHub</a>
+      </div>
+
+      <!-- A/B Testing Simulator -->
+      <div class="card">
+        <div class="badge badge-live">Sept 2025</div>
+        <div class="card-emoji">⚗️</div>
+        <h3>A/B Testing Simulator &amp; Case Study</h3>
+        <p>
+          Python-based A/B testing simulator measuring product impact on CTR and conversion rate. Analyzed <span class="metric">50,000+ user sessions</span> via hypothesis testing. Designed controlled experiment frameworks — sample sizing, randomization, KPI selection — and automated decision-ready reporting pipelines.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">A/B Testing</span>
+          <span class="tag tag-outline">Hypothesis Testing</span>
+        </div>
+        <a class="card-link" href="https://github.com/calantha168" target="_blank">→ GitHub</a>
+      </div>
+
+      <!-- Sephora -->
+      <div class="card">
+        <div class="badge badge-live">Aug 2025</div>
+        <div class="card-emoji">💄</div>
+        <h3>Sephora Product Value Score</h3>
+        <p>
+          Analyzed <span class="metric">10,000+ products</span> to build a data-driven Product Value Score evaluating pricing and category performance. Built interactive Power BI dashboards and applied regression + feature importance analysis to identify key value drivers across categories.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Power BI</span>
+          <span class="tag tag-outline">Product Analytics</span>
+        </div>
+        <a class="card-link" href="https://github.com/calantha168" target="_blank">→ GitHub</a>
+      </div>
+
+      <!-- USV SQL Database -->
+      <div class="card">
+        <div class="badge badge-live">2025</div>
+        <div class="card-emoji">🗄️</div>
+        <h3>USV Research Database — 300+ File ETL</h3>
+        <p>
+          Built SQL Server ETL pipelines transforming <span class="metric">300+ raw research files</span> into structured, analysis-ready relational datasets. Designed and maintained relational database tables for efficient querying, reporting, and data extraction across lab research workflows.
+        </p>
+        <div class="tags">
+          <span class="tag">SQL Server</span>
+          <span class="tag">Python</span>
+          <span class="tag">ETL</span>
+          <span class="tag tag-outline">Data Pipeline</span>
+        </div>
+        <a class="card-link" href="https://github.com/calantha168" target="_blank">→ GitHub</a>
+      </div>
+
+      <!-- Pawloroid — FUN CARD -->
+      <div class="card card-fun">
+        <div class="badge badge-wip">🐾 In Progress</div>
+        <div class="card-emoji">📸</div>
+        <h3>Pawloroid — Pet Spotting App</h3>
+        <p>
+          A private pet-spotting &amp; collection game for a closed group of 3 friends. Snap a pet, get a breed guess + fun fact, pin it on a shared map, and co-adopt it with a friend. Think Pokémon GO, but make it fluffy. 🐶🐱
+        </p>
+        <div class="tags">
+          <span class="tag">Flask</span>
+          <span class="tag">Python</span>
+          <span class="tag">Leaflet.js</span>
+          <span class="tag tag-outline">PWA</span>
+        </div>
+        <a class="card-link" href="#">→ Coming soon ✨</a>
+      </div>
+
+      <!-- Intake Lab — LAST, no GitHub -->
+      <div class="card">
+        <div class="badge badge-wip">In Progress</div>
+        <div class="card-emoji">🔬</div>
+        <h3>Intake Lab — Analytics Platform</h3>
+        <p>
+          Analytics engine automating hypothesis test selection from study design metadata. Integrated SQL datasets with automated validation and assumption checks. Outputs statistical summaries, test recommendations, and visual diagnostics — built for analysts who need answers, not setup.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Automation</span>
+          <span class="tag tag-outline">Statistical Testing</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section">
+    <div class="section-head">
+      <h2>Research</h2>
+      <div class="rule"></div>
+    </div>
+    <p class="research-intro">
+      I lead the data pipeline team in Dr. Gu's <strong>Gangliaguardian Lab</strong> at UT Dallas, studying ultrasonic vocalizations (USVs) in autism-model mice. My work bridges computational bioacoustics, signal processing, and statistical linguistics — applying FFT-based spectral feature extraction, NFFT parameter tuning for spectrogram resolution, and linguistic laws originally derived from human language to understand how mice communicate. The goal: find structure in the squeaks that tells us something real about the neuroscience of autism.
+    </p>
+
+    <div class="research-cards">
+
+      <!-- PIKA -->
+      <div class="card">
+        <div class="badge badge-live">2025</div>
+        <div class="card-emoji">🎙️</div>
+        <h3>PIKA Pipeline — Adult USV Spatial-Acoustic Analysis</h3>
+        <p>
+          Python-based spatial-acoustic pipeline for adult mouse USVs integrating VocalMat output, zone-level analysis, microphone attribution, and transition matrices. Automated VocalMat processing with a Gmail-notification orchestrator. Generates <span class="metric">animated AVI outputs</span> and exportable analysis-ready datasets. Built PIKA DB — a Flask/SQLite database system managing all lab research data.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">FFT</span>
+          <span class="tag tag-outline">VocalMat</span>
+        </div>
+        <div class="tech-pill">Spatial Analysis</div>
+        <div class="tech-pill">Mic Attribution</div>
+        <div class="tech-pill">Transition Matrices</div>
+      </div>
+
+      <!-- ORCA -->
+      <div class="card">
+        <div class="badge badge-live">2026</div>
+        <div class="card-emoji">🐭</div>
+        <h3>ORCA Pipeline — Pup USV Annotation System</h3>
+        <p>
+          Pup USV annotation pipeline using the <span class="metric">Scattoni et al. 2008</span> 10-category taxonomy. Covers QC, manual annotation, and exemplar classification. Designed structured data models with validation checks to ensure analytical consistency across annotators and sessions.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">NFFT</span>
+          <span class="tag tag-outline">Taxonomy Classification</span>
+        </div>
+        <div class="tech-pill">QC Validation</div>
+        <div class="tech-pill">Exemplar Classification</div>
+      </div>
+
+      <!-- linguistic_laws.py -->
+      <div class="card">
+        <div class="badge badge-wip">ASA 2026</div>
+        <div class="card-emoji">📊</div>
+        <h3>linguistic_laws.py — Linguistic Structure in Mouse USVs</h3>
+        <p>
+          Independently-conceived module applying Zipf's Law, Menzerath-Altmann Law, Shannon Entropy, and transition matrices to mouse USV sequences. Investigates whether mouse vocal communication follows statistical structure found in human language — the planned centerpiece of the <span class="metric">ASA Robert W. Young Award</span> submission (Oct 2026).
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Statistical NLP</span>
+          <span class="tag">FFT / NFFT</span>
+          <span class="tag tag-outline">Zipf's Law</span>
+        </div>
+        <div class="tech-pill">Shannon Entropy</div>
+        <div class="tech-pill">Menzerath-Altmann</div>
+        <div class="tech-pill">Transition Matrices</div>
+      </div>
+
+      <!-- ASA Cosmic Form -->
+      <div class="card">
+        <div class="badge badge-live">2025</div>
+        <div class="card-emoji">🌌</div>
+        <h3>USV Cosmic Form — ASA Gallery of Acoustics</h3>
+        <p>
+          Generative art piece derived from real mouse USV acoustic data — accepted into the <span class="metric">ASA Gallery of Acoustics</span>. Transforms FFT-derived spectrogram data into a visual representation of sound structure, bridging scientific rigor and artistic form.
+        </p>
+        <div class="tags">
+          <span class="tag">Generative Art</span>
+          <span class="tag">FFT</span>
+          <span class="tag tag-outline">ASA Gallery</span>
+        </div>
+        <div class="tech-pill">Data Art</div>
+        <div class="tech-pill">Acoustic Visualization</div>
+      </div>
+
+
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- HONORS & ACTIVITIES -->
+<section id="honors">
+  <div class="section">
+    <div class="section-head">
+      <h2>Honors &amp; Activities</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="honors-grid">
+
+      <div class="honor">
+        <h4>ASA Robert W. Young Award</h4>
+        <p>Preparing submission centered on <em>linguistic_laws.py</em> — applying Zipf's Law, Shannon Entropy, and Menzerath-Altmann Law to mouse USV sequences to detect statistical language-like structure. Independently conceived; parallel to DolphinGemma's methodology noticed afterward.</p>
+        <p class="honor-date">Deadline · Oct 2026</p>
+      </div>
+
+      <div class="honor">
+        <h4>ASA Gallery of Acoustics</h4>
+        <p>"USV Cosmic Form" accepted into the Acoustical Society of America's Gallery of Acoustics — one of the few undergraduate submissions recognized by the ASA for scientific art merging real acoustic data with generative visual design.</p>
+        <p class="honor-date">2025 · Acoustical Society of America</p>
+      </div>
+
+      <div class="honor">
+        <h4>Presented at SPUR</h4>
+        <p>Presented mouse USV research at UT Dallas's Summer Platform for Undergraduate Research (SPUR). Communicated computational bioacoustics methodology and findings to a multidisciplinary undergraduate research audience.</p>
+        <p class="honor-date">Summer 2025 · UT Dallas</p>
+      </div>
+
+      <div class="honor">
+        <h4>Presented at CTURC</h4>
+        <p>Presented USV research at the Capital of Texas Undergraduate Research Conference at UT Austin — one of the region's largest undergraduate research conferences — representing the Gangliaguardian Lab's computational bioacoustics work.</p>
+        <p class="honor-date">2025 · UT Austin</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section">
+    <div class="section-head">
+      <h2>Technical Skills</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-cat">
+        <h4>Programming &amp; Analysis</h4>
+        <div class="pills">
+          <span class="pill">Python</span>
+          <span class="pill">R</span>
+          <span class="pill">SQL (SQL Server)</span>
+          <span class="pill">MySQL</span>
+          <span class="pill">MATLAB</span>
+          <span class="pill">Pandas</span>
+          <span class="pill">NumPy</span>
+          <span class="pill">Scikit-learn</span>
+          <span class="pill">SciPy</span>
+          <span class="pill">Flask</span>
+          <span class="pill">Leaflet.js</span>
+        </div>
+      </div>
+
+      <div class="skill-cat">
+        <h4>Machine Learning</h4>
+        <div class="pills">
+          <span class="pill">Logistic Regression</span>
+          <span class="pill">LSTM</span>
+          <span class="pill">k-Means Clustering</span>
+          <span class="pill">Hidden Markov Models</span>
+          <span class="pill">AdaBoost</span>
+          <span class="pill">Ensemble Methods</span>
+          <span class="pill">ROC-AUC</span>
+          <span class="pill">Feature Importance</span>
+          <span class="pill">Batch Scoring</span>
+        </div>
+      </div>
+
+      <div class="skill-cat">
+        <h4>Statistics &amp; Modeling</h4>
+        <div class="pills">
+          <span class="pill">Linear Mixed-Effects Models</span>
+          <span class="pill">Hypothesis Testing</span>
+          <span class="pill">A/B Testing</span>
+          <span class="pill">Applied Regression</span>
+          <span class="pill">EDA</span>
+          <span class="pill">Time Series Analysis</span>
+          <span class="pill">Longitudinal Analysis</span>
+          <span class="pill">Zipf's Law</span>
+          <span class="pill">Shannon Entropy</span>
+          <span class="pill">Menzerath-Altmann</span>
+          <span class="pill">Transition Matrices</span>
+        </div>
+      </div>
+
+      <div class="skill-cat">
+        <h4>Signal Processing &amp; Acoustics</h4>
+        <div class="pills">
+          <span class="pill">FFT</span>
+          <span class="pill">NFFT Parameter Tuning</span>
+          <span class="pill">Spectrogram Generation</span>
+          <span class="pill">Acoustic Feature Extraction</span>
+          <span class="pill">VocalMat</span>
+          <span class="pill">Spatial-Acoustic Analysis</span>
+          <span class="pill">Bioacoustic Annotation</span>
+        </div>
+      </div>
+
+      <div class="skill-cat">
+        <h4>Data Visualization &amp; BI</h4>
+        <div class="pills">
+          <span class="pill">Power BI</span>
+          <span class="pill">Tableau</span>
+          <span class="pill">Matplotlib</span>
+          <span class="pill">Seaborn</span>
+          <span class="pill">Excel (Pivot Tables)</span>
+          <span class="pill">Advanced Formulas</span>
+          <span class="pill">Interactive Dashboards</span>
+        </div>
+      </div>
+
+      <div class="skill-cat">
+        <h4>Tools &amp; Infrastructure</h4>
+        <div class="pills">
+          <span class="pill">Apache Airflow</span>
+          <span class="pill">Git / GitHub</span>
+          <span class="pill">AWS</span>
+          <span class="pill">Docker</span>
+          <span class="pill">SQLite</span>
+          <span class="pill">MySQL Workbench</span>
+          <span class="pill">VS Code</span>
+          <span class="pill">Jupyter Notebook</span>
+          <span class="pill">Gmail API Automation</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Calantha Mohanraj &nbsp;·&nbsp; <a href="mailto:databycalan@gmail.com">databycalan@gmail.com</a> &nbsp;·&nbsp; <a href="https://github.com/calantha168" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/calanthamohanraj" target="_blank">LinkedIn</a></p>
+  <p style="margin-top:0.5rem; font-size:0.8rem;">Data Science &amp; Statistics · UT Dallas · Richardson, TX</p>
+</footer>
+
+</body>
+</html>
